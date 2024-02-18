@@ -8,13 +8,15 @@ import java.awt.event.ActionListener;
 
 public class TrenoGui extends JFrame {
     public Treno treno;
-    private JLabel jlbTitolo;
-    private JLabel jlbTesto;
-    private JPanel jpnTitolo;
-    private JPanel jpnVagoni;
-    private JPanel jpnBottoniLaterali;
-    private JButton jlbVagoneMerci;
-    private JButton jlbTrenoPasseggeri;
+    private JLabel jlbTitolo; //etichetta del titolo
+    private JLabel jlbTesto; //etichetta di testo generica
+    private JPanel jpnTitolo; //pannello del titolo
+    private JPanel jpnVagoni; //pannello con le img dei vagoni
+
+    private JPanel jpnBottoniLaterali; //pannello con i bottoni per aggiungere vagoni (laterale)
+
+    private JButton jbVagoneMerci; //bottone per aggiungere vagone merci
+    private JButton jbVagonePasseggeri; //vagone passeggeri
 
 
     public TrenoGui(Treno trenoParametro) {
@@ -41,13 +43,15 @@ public class TrenoGui extends JFrame {
         jlbTesto.setFont(new Font("Futura", Font.BOLD, 20));
         jlbTesto.setHorizontalAlignment(JLabel.CENTER);
 
-        jlbVagoneMerci = new JButton();
-        jlbVagoneMerci.add(jlbTesto);
-        jlbVagoneMerci.addActionListener(new AscoltaVagoneMerci());
+        jbVagoneMerci = new JButton();
+        jbVagoneMerci.add(jlbTesto);
+        jbVagoneMerci.addActionListener(new AscoltaVagoneMerci());
 
         jpnBottoniLaterali = new JPanel();
+        jpnBottoniLaterali.add(jbVagoneMerci);
+
         this.add(jpnTitolo, BorderLayout.NORTH);
-        this.add(jpnBottoniLaterali, BorderLayout.WEST);
+        this.add(jpnBottoniLaterali, BorderLayout.EAST);
         this.add(jpnVagoni, BorderLayout.CENTER);
         this.setVisible(true);
     }
