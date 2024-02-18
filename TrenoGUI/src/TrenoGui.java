@@ -1,6 +1,6 @@
-
 /**
- * Commento
+ * RICCARDO LA ROCCA 4C INF
+ * Esercizio Treno GUI con Java AWT/SWING
  */
 
 import javax.swing.*;
@@ -11,21 +11,16 @@ import java.awt.event.ActionListener;
 public class TrenoGui extends JFrame {
     public double lunghezzaTreno;
     public double pesoTreno;
-
-    public Treno treno;
+    public Treno treno; //parametro che mi faccio passare dal main
     private JLabel jlbTitolo; // etichetta del titolo
     private JLabel jlbLunghezzaTreno; // etichetta di testo generica
     private JLabel jlbPesoTreno; // etichetta di testo generica
-
     private JPanel jpnTitolo; // pannello del titolo
     public JPanel jpnVagoni; // pannello con le img dei vagoni
-
-    // #
+    public JPanel jpDatiTreno; //pannello in basso che contiene lunghezza e peso del treno
     private JPanel jpnBottoniLaterali; // pannello con i bottoni per aggiungere vagoni (laterale)
-
     private JButton jbVagoneMerci; // bottone per aggiungere vagone merci
-    private JButton jbVagonePasseggeri; // vagone passeggeri
-
+    private JButton jbVagonePasseggeri; // bottone vagone passeggeri
     private JLabel jlbTestoPasseggeri;
     private JLabel jlbTestoMerci;
 
@@ -47,8 +42,7 @@ public class TrenoGui extends JFrame {
         jpnVagoni = new JPanel();
         jpnVagoni.setLayout(new FlowLayout());
 
-
-        // aggiungi vagone merci
+        // aggiungi vagone merci (label e bottone)
         jlbTestoMerci = new JLabel();
         jlbTestoMerci.setText("Aggiungi vagone merci");
         jlbTestoMerci.setForeground(Color.BLACK);
@@ -57,26 +51,31 @@ public class TrenoGui extends JFrame {
 
         jbVagoneMerci = new JButton();
         jbVagoneMerci.add(jlbTestoMerci);
+        jbVagoneMerci.setContentAreaFilled(false);
+        jbVagoneMerci.setBorderPainted(false);
         jbVagoneMerci.addActionListener(new AscoltaVagoneMerci());
 
-        // vagone passeggeri
-        jbVagonePasseggeri = new JButton();
+        // vagone passeggeri (label e bottone)
         jlbTestoPasseggeri = new JLabel();
         jlbTestoPasseggeri.setText("Aggiungi vagone passeggeri");
         jlbTestoPasseggeri.setForeground(Color.BLACK);
         jlbTestoPasseggeri.setFont(new Font("Futura", Font.BOLD, 17));
         jlbTestoPasseggeri.setHorizontalAlignment(JLabel.CENTER);
 
+        jbVagonePasseggeri = new JButton();
         jbVagonePasseggeri.add(jlbTestoPasseggeri);
+        jbVagonePasseggeri.setContentAreaFilled(false); //toglie il riquadro del bottone e il bordo
+        jbVagonePasseggeri.setBorderPainted(false);
         jbVagonePasseggeri.addActionListener(new AscoltaVagonePasseggeri());
 
         // aggiungi bottoni al pannello
         jpnBottoniLaterali = new JPanel();
-        jpnBottoniLaterali.setLayout(new BoxLayout(jpnBottoniLaterali, BoxLayout.Y_AXIS));
+        jpnBottoniLaterali.setLayout(new GridLayout(0, 1));
         jpnBottoniLaterali.add(jbVagoneMerci);
         jpnBottoniLaterali.add(jbVagonePasseggeri);
 
         //etichetta con peso, lunghezza del treno
+        jpDatiTreno = new JPanel();
         jlbLunghezzaTreno = new JLabel();
         jlbPesoTreno = new JLabel();
         lunghezzaTreno = 0;
@@ -85,18 +84,18 @@ public class TrenoGui extends JFrame {
         jlbLunghezzaTreno.setText("Lunghezza treno: 0 m");
         jlbLunghezzaTreno.setForeground(Color.BLACK);
         jlbLunghezzaTreno.setFont(new Font("Futura", Font.BOLD, 15));
-        jpnBottoniLaterali.add(jlbLunghezzaTreno);
 
         jlbPesoTreno.setText("Peso treno: 0 tonnellate");
         jlbPesoTreno.setForeground(Color.BLACK);
         jlbPesoTreno.setFont(new Font("Futura", Font.BOLD, 15));
-        jpnBottoniLaterali.add(jlbLunghezzaTreno);
-        jpnBottoniLaterali.add(jlbPesoTreno);
+        jpDatiTreno.add(jlbLunghezzaTreno);
+        jpDatiTreno.add(jlbPesoTreno);
 
         // frame
         this.add(jpnTitolo, BorderLayout.NORTH);
         this.add(jpnBottoniLaterali, BorderLayout.EAST);
         this.add(jpnVagoni, BorderLayout.CENTER);
+        this.add(jpDatiTreno, BorderLayout.SOUTH);
         this.setVisible(true);
     }
 
@@ -122,7 +121,7 @@ public class TrenoGui extends JFrame {
 
             jpnVagoni.revalidate(); //notifica al layout che il pannello è cambiato
             jpnVagoni.repaint();
-            pesoTreno = treno.returnPesoTreno();
+            pesoTreno = treno.returnPesoTreno(); //salvo il nuovo valore nella variabile e modifico l'etichetta
             lunghezzaTreno = treno.returnLunghezzaTreno();
             jlbLunghezzaTreno.setText("Lunghezza treno: " + lunghezzaTreno + " m");
             jlbPesoTreno.setText("Peso treno: " + pesoTreno + " tonnellate");
@@ -151,11 +150,10 @@ public class TrenoGui extends JFrame {
 
             jpnVagoni.revalidate(); //notifica al layout che il pannello è cambiato
             jpnVagoni.repaint();
-            pesoTreno = treno.returnPesoTreno();
+            pesoTreno = treno.returnPesoTreno(); //salvo il nuovo valore nella variabile e modifico l'etichetta
             lunghezzaTreno = treno.returnLunghezzaTreno();
             jlbLunghezzaTreno.setText("Lunghezza treno: " + lunghezzaTreno + " m");
             jlbPesoTreno.setText("Peso treno: " + pesoTreno + " tonnellate");
-
         }
     }
 }

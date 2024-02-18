@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TrenoGUI:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TrenoGUI_jar</output-path>
+    <root id="archive" name="TrenoGUI.jar">
+      <element id="module-output" name="TrenoGUI" />
+    </root>
+  </artifact>
+</component>
