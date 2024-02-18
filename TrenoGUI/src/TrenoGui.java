@@ -79,6 +79,8 @@ public class TrenoGui extends JFrame {
         //etichetta con peso, lunghezza del treno
         jlbLunghezzaTreno = new JLabel();
         jlbPesoTreno = new JLabel();
+        lunghezzaTreno = 0;
+        pesoTreno = 0;
 
         jlbLunghezzaTreno.setText("Lunghezza treno: 0 m");
         jlbLunghezzaTreno.setForeground(Color.BLACK);
@@ -120,8 +122,8 @@ public class TrenoGui extends JFrame {
 
             jpnVagoni.revalidate(); //notifica al layout che il pannello è cambiato
             jpnVagoni.repaint();
-            pesoTreno += treno.returnPesoTreno();
-            lunghezzaTreno += treno.returnLunghezzaTreno();
+            pesoTreno = treno.returnPesoTreno();
+            lunghezzaTreno = treno.returnLunghezzaTreno();
             jlbLunghezzaTreno.setText("Lunghezza treno: " + lunghezzaTreno + " m");
             jlbPesoTreno.setText("Peso treno: " + pesoTreno + " tonnellate");
         }
@@ -149,8 +151,8 @@ public class TrenoGui extends JFrame {
 
             jpnVagoni.revalidate(); //notifica al layout che il pannello è cambiato
             jpnVagoni.repaint();
-            pesoTreno += treno.returnPesoTreno();
-            lunghezzaTreno += treno.returnLunghezzaTreno();
+            pesoTreno = treno.returnPesoTreno();
+            lunghezzaTreno = treno.returnLunghezzaTreno();
             jlbLunghezzaTreno.setText("Lunghezza treno: " + lunghezzaTreno + " m");
             jlbPesoTreno.setText("Peso treno: " + pesoTreno + " tonnellate");
 
