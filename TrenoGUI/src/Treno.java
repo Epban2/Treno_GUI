@@ -39,7 +39,7 @@ public class Treno {
         for (Vagone vagone : treno) {
             lunghezzaComplessiva += vagone.getLunghezzaCm();
         }
-        return lunghezzaComplessiva;
+        return lunghezzaComplessiva/100;
     }
 
     /**

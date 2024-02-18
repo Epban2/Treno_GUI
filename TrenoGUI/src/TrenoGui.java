@@ -9,9 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TrenoGui extends JFrame {
+    public double lunghezzaTreno;
+    public double pesoTreno;
+
     public Treno treno;
     private JLabel jlbTitolo; // etichetta del titolo
-    private JLabel jlbTesto; // etichetta di testo generica
+    private JLabel jlbLunghezzaTreno; // etichetta di testo generica
+    private JLabel jlbPesoTreno; // etichetta di testo generica
+
     private JPanel jpnTitolo; // pannello del titolo
     public JPanel jpnVagoni; // pannello con le img dei vagoni
 
@@ -42,6 +47,7 @@ public class TrenoGui extends JFrame {
         jpnVagoni = new JPanel();
         jpnVagoni.setLayout(new FlowLayout());
 
+
         // aggiungi vagone merci
         jlbTestoMerci = new JLabel();
         jlbTestoMerci.setText("Aggiungi vagone merci");
@@ -70,6 +76,21 @@ public class TrenoGui extends JFrame {
         jpnBottoniLaterali.add(jbVagoneMerci);
         jpnBottoniLaterali.add(jbVagonePasseggeri);
 
+        //etichetta con peso, lunghezza del treno
+        jlbLunghezzaTreno = new JLabel();
+        jlbPesoTreno = new JLabel();
+
+        jlbLunghezzaTreno.setText("Lunghezza treno: 0 m");
+        jlbLunghezzaTreno.setForeground(Color.BLACK);
+        jlbLunghezzaTreno.setFont(new Font("Futura", Font.BOLD, 15));
+        jpnBottoniLaterali.add(jlbLunghezzaTreno);
+
+        jlbPesoTreno.setText("Peso treno: 0 tonnellate");
+        jlbPesoTreno.setForeground(Color.BLACK);
+        jlbPesoTreno.setFont(new Font("Futura", Font.BOLD, 15));
+        jpnBottoniLaterali.add(jlbLunghezzaTreno);
+        jpnBottoniLaterali.add(jlbPesoTreno);
+
         // frame
         this.add(jpnTitolo, BorderLayout.NORTH);
         this.add(jpnBottoniLaterali, BorderLayout.EAST);
@@ -83,19 +104,26 @@ public class TrenoGui extends JFrame {
     class AscoltaVagoneMerci implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            ImageIcon icon = new ImageIcon("TrenoGUI/img/vagone_merci.jpg");
-            Image image = icon.getImage();
+            VagoneMerci vagoneMerci = new VagoneMerci();
+            treno.addVagone(vagoneMerci); //aggiungo un vagone al treno (peso etc.)
 
-            int width = image.getWidth(null) / 3; // rimpicciolire l'immagine
-            int height = image.getHeight(null) / 5  ; //
-            Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH); //adatta l'immagine senza perdere di qualita'
-            ImageIcon scaledIcon = new ImageIcon(scaledImage); //icona con l'immagine dimensionata
+            ImageIcon icon = new ImageIcon("TrenoGUI/img/vagone_merci.jpg");
+            Image immagine = icon.getImage();
+
+            int larghezza = immagine.getWidth(null) / 3; // rimpicciolire l'immagine
+            int altezza = immagine.getHeight(null) / 5; //
+            Image rimensionata = immagine.getScaledInstance(larghezza, altezza, Image.SCALE_SMOOTH); //adatta l'immagine senza perdere di qualita'
+            ImageIcon scaledIcon = new ImageIcon(rimensionata); //icona con l'immagine dimensionata
 
             JLabel label = new JLabel(scaledIcon); //label con l'immagine
             jpnVagoni.add(label);
 
             jpnVagoni.revalidate(); //notifica al layout che il pannello è cambiato
             jpnVagoni.repaint();
+            pesoTreno += treno.returnPesoTreno();
+            lunghezzaTreno += treno.returnLunghezzaTreno();
+            jlbLunghezzaTreno.setText("Lunghezza treno: " + lunghezzaTreno + " m");
+            jlbPesoTreno.setText("Peso treno: " + pesoTreno + " tonnellate");
         }
     }
 
@@ -105,19 +133,27 @@ public class TrenoGui extends JFrame {
     class AscoltaVagonePasseggeri implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            ImageIcon icon = new ImageIcon("TrenoGUI/img/vagone_passeggeri.jpg");
-            Image image = icon.getImage();
+            VagonePasseggeri vagonePasseggeri = new VagonePasseggeri();
+            treno.addVagone(vagonePasseggeri); //aggiungo un vagone al treno (peso etc.)
 
-            int width = image.getWidth(null) / 5; // rimpicciolire l'immagine
-            int height = image.getHeight(null) / 3; //
-            Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH); //adatta l'immagine senza perdere di qualita'
-            ImageIcon scaledIcon = new ImageIcon(scaledImage); //icona con l'immagine dimensionata
+            ImageIcon icon = new ImageIcon("TrenoGUI/img/vagone_passeggeri.jpg");
+            Image immagine = icon.getImage();
+
+            int larghezza = immagine.getWidth(null) / 5; // rimpicciolire l'immagine
+            int altezza = immagine.getHeight(null) / 3; //
+            Image rimensionata = immagine.getScaledInstance(larghezza, altezza, Image.SCALE_SMOOTH); //adatta l'immagine senza perdere di qualita'
+            ImageIcon scaledIcon = new ImageIcon(rimensionata); //icona con l'immagine dimensionata
 
             JLabel label = new JLabel(scaledIcon); //label con l'immagine
             jpnVagoni.add(label);
 
             jpnVagoni.revalidate(); //notifica al layout che il pannello è cambiato
             jpnVagoni.repaint();
+            pesoTreno += treno.returnPesoTreno();
+            lunghezzaTreno += treno.returnLunghezzaTreno();
+            jlbLunghezzaTreno.setText("Lunghezza treno: " + lunghezzaTreno + " m");
+            jlbPesoTreno.setText("Peso treno: " + pesoTreno + " tonnellate");
+
         }
     }
 }
