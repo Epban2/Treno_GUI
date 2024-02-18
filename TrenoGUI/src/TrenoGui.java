@@ -1,7 +1,8 @@
 
 /**
-Commento
-*/
+ * Commento
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -82,11 +83,19 @@ public class TrenoGui extends JFrame {
     class AscoltaVagoneMerci implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            JLabel label = new JLabel();
-            label.setIcon(new ImageIcon("TrenoGUI/img/vagone_merci.jpg"));
+            ImageIcon icon = new ImageIcon("TrenoGUI/img/vagone_merci.jpg");
+            Image image = icon.getImage();
 
+            int width = image.getWidth(null) / 3; // rimpicciolire l'immagine
+            int height = image.getHeight(null) / 5  ; //
+            Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH); //adatta l'immagine senza perdere di qualita'
+            ImageIcon scaledIcon = new ImageIcon(scaledImage); //icona con l'immagine dimensionata
+
+            JLabel label = new JLabel(scaledIcon); //label con l'immagine
             jpnVagoni.add(label);
 
+            jpnVagoni.revalidate(); //notifica al layout che il pannello è cambiato
+            jpnVagoni.repaint();
         }
     }
 
@@ -96,7 +105,19 @@ public class TrenoGui extends JFrame {
     class AscoltaVagonePasseggeri implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            ImageIcon icon = new ImageIcon("TrenoGUI/img/vagone_passeggeri.jpg");
+            Image image = icon.getImage();
 
+            int width = image.getWidth(null) / 5; // rimpicciolire l'immagine
+            int height = image.getHeight(null) / 3; //
+            Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH); //adatta l'immagine senza perdere di qualita'
+            ImageIcon scaledIcon = new ImageIcon(scaledImage); //icona con l'immagine dimensionata
+
+            JLabel label = new JLabel(scaledIcon); //label con l'immagine
+            jpnVagoni.add(label);
+
+            jpnVagoni.revalidate(); //notifica al layout che il pannello è cambiato
+            jpnVagoni.repaint();
         }
     }
 }
