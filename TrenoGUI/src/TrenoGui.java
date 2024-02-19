@@ -113,7 +113,7 @@ public class TrenoGui extends JFrame {
                 icon = new ImageIcon("TrenoGUI/img/vagone_merci.png");
             } else {
                 vagone = new VagonePasseggeri();
-                icon = new ImageIcon("TrenoGUI/img/vagone_passeggeri.png");
+                icon = new ImageIcon("TrenoGUI/img/vagone_passeggeri2.png");
             }
             treno.addVagone(vagone);
             JLabel label = new JLabel(icon); // label con l'immagine
