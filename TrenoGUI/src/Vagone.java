@@ -45,4 +45,8 @@ public abstract class Vagone {
                 ", lunghezzaCm=" + lunghezzaCm +
                 ", pesoaVuoto=" + pesoaVuoto + "\n";
     }
+
+    /** metodo astratto */
+    public abstract double pesoVagone();
+
 }

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="TrenoGUI">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/TrenoGUI_jar/TrenoGUI.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

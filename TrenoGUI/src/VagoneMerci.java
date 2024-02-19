@@ -49,4 +49,10 @@ public class VagoneMerci extends Vagone {
                 "caricoMassimo=" + caricoMassimo +
                 ", caricoAttuale=" + caricoAttuale;
     }
+
+    @Override
+    public double pesoVagone() {
+        return getCaricoAttuale();
+    }
+
 }

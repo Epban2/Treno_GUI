@@ -49,4 +49,10 @@ public class VagonePasseggeri extends Vagone {
                 "numeroMaxPasseggeri=" + numeroMaxPasseggeri +
                 ", numeroPasseggeri=" + numeroPasseggeri;
     }
+
+    @Override
+    public double pesoVagone() {
+        return getPesoaVuoto()+numeroMaxPasseggeri*0.07;
+    }
+    
 }

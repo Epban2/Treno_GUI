@@ -39,7 +39,7 @@ public class Treno {
         for (Vagone vagone : treno) {
             lunghezzaComplessiva += vagone.getLunghezzaCm();
         }
-        return lunghezzaComplessiva/100;
+        return lunghezzaComplessiva / 100;
     }
 
     /**
@@ -50,12 +50,7 @@ public class Treno {
     public double returnPesoTreno() {
         double pesoComplessivo = 0;
         for (Vagone vagone : treno) {
-            if (vagone instanceof VagoneMerci)
-                pesoComplessivo += ((VagoneMerci) vagone).getCaricoAttuale(); //il peso vuoto è gia' incluso
-            else {
-                VagonePasseggeri vagone2 = ((VagonePasseggeri) vagone);
-                pesoComplessivo += vagone2.getPesoaVuoto() + vagone2.getNumeroPasseggeri() * 0.07; //ogni persona pesa 70Kg
-            }
+            pesoComplessivo += vagone.pesoVagone();
         }
         return pesoComplessivo;
     }
